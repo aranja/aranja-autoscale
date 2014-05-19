@@ -1,0 +1,10 @@
+.Autoscale {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  
+  &-parent {
+    overflow: hidden;
+    position: relative;
+  }
+}

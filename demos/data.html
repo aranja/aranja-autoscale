@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Araja - Component/autoscale</title>
+  <link rel="stylesheet" href="css/index.css">
+  <style>
+  html,body{margin: 0; padding: 0;}
+  .container-1 { background: red; height: 500px; }
+  .container-2 { background: green; height: 300px; }
+  </style>
+</head>
+<body>
+  <div class="container-1">
+    <img data-autoscale data-mode="fit" src="http://lorempixel.com/500/500/sports/">
+  </div>
+  <div class="container-2">
+    <img data-autoscale src="http://lorempixel.com/500/500/sports/">
+  </div>
+  <script src="src/index.js"></script>
+</body>
+</html>

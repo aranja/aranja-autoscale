@@ -1,0 +1,49 @@
+{
+  "name": "aranja-autoscale",
+  "version": "0.0.1",
+  "description": "Autoscale images or videos to fill a container div",
+  "main": "index.js",
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "plugin": {
+      "exports": "plugin",
+      "depends": [
+        "jquery:$"
+      ]
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/aranja/aranja-autoscale.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aranja/aranja-autoscale/issues"
+  },
+  "homepage": "https://github.com/aranja/aranja-autoscale",
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "karma": "~0.12.16",
+    "karma-commonjs": "0.0.7",
+    "karma-chrome-launcher": "~0.1.3",
+    "karma-firefox-launcher": "~0.1.3",
+    "karma-safari-launcher": "~0.1.1",
+    "karma-opera-launcher": "~0.1.0",
+    "karma-mocha": "~0.1.3",
+    "karma-chai": "~0.1.0",
+    "jquery": "~1.11.1",
+    "watchify": "~0.10.1",
+    "browserify": "~4.1.5",
+    "browserify-shim": "~3.5.0"
+  },
+  "scripts": {
+    "test": "karma start",
+    "styles": "sass --watch index.scss:demos/css/index.css",
+    "scripts": "watchify ./index.js -o ./demos/src/index.js",
+    "dev": "npm run styles && npm run scripts"
+  }
+}
