@@ -32,7 +32,7 @@ Autoscale.prototype.init = function () {
   this.refresh();
   this.refresh = $.proxy(this.refresh, this);
   this.isAnimating = false;
-  win.on('resize', $.proxy(this.handleResize, this));
+  win.on('resize.aranja', $.proxy(this.handleResize, this));
 };
 
 /**
