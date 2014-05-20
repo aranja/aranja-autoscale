@@ -41,7 +41,7 @@
     "browserify-shim": "~3.5.0"
   },
   "scripts": {
-    "test": "karma start",
+    "test": "node_modules/karma/bin/karma start",
     "styles": "sass --watch index.scss:demos/css/index.css",
     "scripts": "watchify ./index.js -o ./demos/src/index.js",
     "dev": "npm run styles && npm run scripts"
