@@ -59,7 +59,7 @@ Autoscale.prototype.getRatio = function() {
   }
 
   return this.el.width() / this.el.height();
-}
+};
 
 Autoscale.prototype.refresh = function() {
   var parent = {
@@ -73,11 +73,11 @@ Autoscale.prototype.refresh = function() {
 
 Autoscale.prototype.handleResize = function() {
   if (!this.isAnimating) {
-    window.requestAnimationFrame(this.refresh)
+    window.requestAnimationFrame(this.refresh);
   }
 
   this.isAnimating = true;
-}
+};
 
 $.fn.autoscale = function(options) {
   return this.each(function() {
