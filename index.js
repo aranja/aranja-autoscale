@@ -4,12 +4,7 @@ var win = $(window);
 function Autoscale (el, options) {
   this.el = $(el);
   this.options = $.extend({}, Autoscale.DEFAULTS, options, this.el.data());
-
-  if (this.options.parent) {
-    this.parent = $(this.options.parent);
-  } else {
-    this.parent = this.el.parent();
-  }
+  this.parent = this.el.offsetParent();
 
   this.init();
 }
@@ -19,13 +14,9 @@ Autoscale.DEFAULTS = {
 };
 
 Autoscale.prototype.init = function () {
-  this.el.addClass('Autoscale');
-  this.parent.addClass('Autoscale-parent');
-
   this.refresh();
   this.refresh = $.proxy(this.refresh, this);
   this.isAnimating = false;
-
   win.on('resize', $.proxy(this.handleResize, this));
 };
 
