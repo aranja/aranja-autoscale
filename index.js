@@ -8,7 +8,7 @@ var win = $(window);
  * @param options
  * @constructor
  */
-function Autoscale (el, options) {
+function Autoscale(el, options) {
   this.el = $(el);
   this.options = $.extend({}, Autoscale.DEFAULTS, options, this.el.data());
   this.parent = this.el.offsetParent();
@@ -28,7 +28,7 @@ Autoscale.DEFAULTS = {
  * Set resize handler for keeping media
  * in correct scale and position.
  */
-Autoscale.prototype.init = function () {
+Autoscale.prototype.init = function() {
   this.refresh();
   this.refresh = $.proxy(this.refresh, this);
   this.isAnimating = false;
