@@ -1,35 +1,47 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict';
 var $ = require('jquery');
 var win = $(window);
 
+/**
+ * Autoscale Constructor
+ * @param el
+ * @param options
+ * @constructor
+ */
 function Autoscale (el, options) {
   this.el = $(el);
   this.options = $.extend({}, Autoscale.DEFAULTS, options, this.el.data());
-
-  if (this.options.parent) {
-    this.parent = $(this.options.parent);
-  } else {
-    this.parent = this.el.parent();
-  }
-
+  this.parent = this.el.offsetParent();
   this.init();
 }
 
+/**
+ * Autoscale Default Settings
+ * @type {{mode: string}}
+ */
 Autoscale.DEFAULTS = {
   mode: 'cover'
 };
 
+/**
+ * Initialize an Autoscale Instance.
+ * Set resize handler for keeping media
+ * in correct scale and position.
+ */
 Autoscale.prototype.init = function () {
-  this.el.addClass('Autoscale');
-  this.parent.addClass('Autoscale-parent');
-
   this.refresh();
   this.refresh = $.proxy(this.refresh, this);
   this.isAnimating = false;
-
   win.on('resize', $.proxy(this.handleResize, this));
 };
 
+/**
+ * Calculate CSS values for scale and position.
+ * @param parent
+ * @param ratio
+ * @returns {{width: string, height: string, marginLeft: string, marginTop: string}}
+ */
 Autoscale.prototype.getCSS = function(parent, ratio) {
   parent.ratio = parent.width / parent.height;
 
@@ -54,14 +66,18 @@ Autoscale.prototype.getCSS = function(parent, ratio) {
   };
 };
 
+
+/**
+ * Get Element Ratio
+ * @returns {number|*|ratio}
+ */
 Autoscale.prototype.getRatio = function() {
-  if (this.options.ratio) {
-    return this.options.ratio;
-  }
+  return this.options.ratio || this.el.width() / this.el.height();
+};
 
-  return this.el.width() / this.el.height();
-}
-
+/**
+ * Refresh Element
+ */
 Autoscale.prototype.refresh = function() {
   var parent = {
     width: this.parent.width(),
@@ -72,20 +88,31 @@ Autoscale.prototype.refresh = function() {
   this.isAnimating = false;
 };
 
+/**
+ * Resize Handler
+ */
 Autoscale.prototype.handleResize = function() {
   if (!this.isAnimating) {
-    window.requestAnimationFrame(this.refresh)
+    window.requestAnimationFrame(this.refresh);
   }
 
   this.isAnimating = true;
-}
+};
 
+/**
+ * jQuery Autoscale Plugin
+ * @param options
+ * @returns {*}
+ */
 $.fn.autoscale = function(options) {
   return this.each(function() {
     new Autoscale(this, options);
   });
 };
 
+/**
+ * Initialize Data Attribute
+ */
 win.on('load', function() {
   $('[data-autoscale]').autoscale();
 });
