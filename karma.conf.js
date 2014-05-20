@@ -16,6 +16,12 @@ module.exports = function(config) {
     preprocessors: {
       'tests/*.js': ['commonjs']
     },
+    
+    // list of files / patterns to load in the browser
+    files: [
+      'tests/**/*.js'
+    ],
+
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
