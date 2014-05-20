@@ -40,6 +40,5 @@ container {
 Options can be passed via JavaScript. 
 
 | Name | type | default | description |
-| ------------- | ----------- |
-| mode | string | `cover` | Two modes: `cover` and `contain`. This option
- can be past to the initializing data attribute: `data-autoscale="contain"`. |
+| ------ | ------- | ----- | ------ |
+| mode | string | `cover` | Two modes: `cover` and `contain`. This option can be past to the initializing data attribute: `data-autoscale="contain"`. |
