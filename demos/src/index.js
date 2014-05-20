@@ -9,7 +9,7 @@ var win = $(window);
  * @param options
  * @constructor
  */
-function Autoscale (el, options) {
+function Autoscale(el, options) {
   this.el = $(el);
   this.options = $.extend({}, Autoscale.DEFAULTS, options, this.el.data());
   this.parent = this.el.offsetParent();
@@ -29,11 +29,11 @@ Autoscale.DEFAULTS = {
  * Set resize handler for keeping media
  * in correct scale and position.
  */
-Autoscale.prototype.init = function () {
+Autoscale.prototype.init = function() {
   this.refresh();
   this.refresh = $.proxy(this.refresh, this);
   this.isAnimating = false;
-  win.on('resize', $.proxy(this.handleResize, this));
+  win.on('resize.aranja', $.proxy(this.handleResize, this));
 };
 
 /**
@@ -113,7 +113,7 @@ $.fn.autoscale = function(options) {
 /**
  * Initialize Data Attribute
  */
-win.on('load', function() {
+win.on('load.aranja', function() {
   $('[data-autoscale]').autoscale();
 });
 

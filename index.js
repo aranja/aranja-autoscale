@@ -112,6 +112,6 @@ $.fn.autoscale = function(options) {
 /**
  * Initialize Data Attribute
  */
-win.on('load', function() {
+win.on('load.aranja', function() {
   $('[data-autoscale]').autoscale();
 });
