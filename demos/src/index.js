@@ -13,7 +13,6 @@ function Autoscale(el, options) {
   this.el = $(el);
   this.options = $.extend({}, Autoscale.DEFAULTS, options);
   this.options.mode = this.el.data('autoscale') || this.options.mode;
-  console.log( this.options );
   this.parent = this.el.offsetParent();
   this.init();
 }
