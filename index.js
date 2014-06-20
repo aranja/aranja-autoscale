@@ -1,27 +1,25 @@
 'use strict';
 var $ = require('jquery');
-var win = $(window);
 
 /**
- * Autoscale Constructor
- * @param el
- * @param options
+ * Autoscale takes an element and make sure it fits its container.
  * @constructor
+ * @param {HTMLElement} el - The DOM element.
+ * @param {{autoscale: string}} options - The options.
  */
 function Autoscale(el, options) {
   this.el = $(el);
   this.options = $.extend({}, Autoscale.DEFAULTS, options);
-  this.options.mode = this.el.data('autoscale') || this.options.mode;
   this.parent = this.el.offsetParent();
   this.init();
 }
 
 /**
  * Autoscale Default Settings
- * @type {{mode: string}}
+ * @type {{autoscale: string}}
  */
 Autoscale.DEFAULTS = {
-  mode: 'cover'
+  autoscale: 'cover'
 };
 
 /**
@@ -33,14 +31,19 @@ Autoscale.prototype.init = function() {
   this.refresh();
   this.refresh = $.proxy(this.refresh, this);
   this.isAnimating = false;
-  win.on('resize.aranja', $.proxy(this.handleResize, this));
+  $(window).on('resize.aranja', $.proxy(this.handleResize, this));
 };
 
 /**
  * Calculate CSS values for scale and position.
  * @param parent
  * @param ratio
- * @returns {{width: string, height: string, marginLeft: string, marginTop: string}}
+ * @returns {{
+ *   width: string,
+ *   height: string,
+ *   marginLeft: string,
+ *   marginTop: string
+ * }}
  */
 Autoscale.prototype.getCSS = function(parent, ratio) {
   parent.ratio = parent.width / parent.height;
@@ -50,14 +53,13 @@ Autoscale.prototype.getCSS = function(parent, ratio) {
     height: 0
   };
 
-  if (this.options.mode === 'cover' && ratio <= parent.ratio) {
+  if (this.options.autoscale === 'cover' && ratio <= parent.ratio) {
     size.width = parent.width;
     size.height = size.width / ratio;
   } else {
     size.height = parent.height;
     size.width = size.height * ratio;
   }
-
   return {
     width: size.width + 'px',
     height: size.height + 'px',
@@ -98,6 +100,8 @@ Autoscale.prototype.handleResize = function() {
   this.isAnimating = true;
 };
 
+module.exports = Autoscale;
+
 /**
  * jQuery Autoscale Plugin
  * @param options
@@ -105,13 +109,13 @@ Autoscale.prototype.handleResize = function() {
  */
 $.fn.autoscale = function(options) {
   return this.each(function() {
-    new Autoscale(this, options);
+  new Autoscale(this, options);
   });
 };
 
 /**
  * Initialize Data Attribute
  */
-win.on('load.aranja', function() {
-  $('[data-autoscale]').autoscale();
+$(window).on('load.aranja', function() {
+  $('[data-autoscale]').autoscale($(this).data());
 });
