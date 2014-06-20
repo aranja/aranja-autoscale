@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Araja - Component/autoscale</title>
-  <link rel="stylesheet" href="css/index.css">
+  <title>Autoscale component - Aranja</title>
+  <link rel="stylesheet" href="index.css">
   <style>
   html,body{margin: 0; padding: 0;}
   .container-1 { background: red; height: 500px; }
@@ -12,12 +12,12 @@
   </style>
 </head>
 <body>
-  <div class="Autoscale-parent container-1">
-    <img class="Autoscale" data-autoscale="contain" src="http://lorempixel.com/500/500/sports/">
+  <div class="with-Autoscale container-1">
+    <img class="Autoscale" data-autoscale="cover" src="http://lorempixel.com/500/500/sports/">
   </div>
-  <div class="Autoscale-parent container-2">
+  <div class="with-Autoscale container-2">
     <img class="Autoscale" data-autoscale src="http://lorempixel.com/500/500/sports/">
   </div>
-  <script src="src/index.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>

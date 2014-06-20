@@ -6,13 +6,12 @@
   "authors": [
     "Aranja"
   ],
-  "description": "Autoscale images or videos to fill a container div",
+  "description": "Autoscale elements to fill a container.",
   "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
     "tests"
   ]
 }

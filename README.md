@@ -1,18 +1,18 @@
-# Aranja Autoscale Component
+# Autoscale component
 
-Autoscale images or videos to fill a container div.
+Autoscale elements to fill a container.
 
 ## Usage
 
 HTML Markup:
 
 ```html
-<div class="Autoscale-parent">
+<div class="with-Autoscale">
     <img class="Autoscale" data-autoscale src="aranja-is-awesome.png">
 </div>
 ```
 
-Note that the classes `.Autoscale` and `.Autoscale-parent` are optional 
+Note that the classes `.Autoscale` and `.with-Autoscale` are optional 
 but they are configured so that the plugin behaves correctly. 
 
 The only requirement for styling is that the `data-autoscale` element has
