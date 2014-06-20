@@ -29,9 +29,11 @@ Autoscale.DEFAULTS = {
  */
 Autoscale.prototype.init = function() {
   this.refresh();
-  this.refresh = $.proxy(this.refresh, this);
+  this.refresh = this.refresh.bind(this);
   this.isAnimating = false;
-  $(window).on('resize.aranja', $.proxy(this.handleResize, this));
+  this.ratio = this.options.ratio || this.el.width() / this.el.height();
+
+  $(window).on('resize.aranja', this.handleResize.bind(this));
 };
 
 /**
@@ -39,53 +41,38 @@ Autoscale.prototype.init = function() {
  * @param parent
  * @param ratio
  * @returns {{
- *   width: string,
- *   height: string,
- *   marginLeft: string,
- *   marginTop: string
+ *   width: number,
+ *   height: number,
  * }}
  */
-Autoscale.prototype.getCSS = function(parent, ratio) {
-  parent.ratio = parent.width / parent.height;
+Autoscale.prototype.getSize = function() {
+  var parentHeight = this.parent.height(),
+    parentWidth = this.parent.width(),
+    parentRatio = parentWidth / parentHeight;
 
-  var size = {
-    width: 0,
-    height: 0
-  };
-
-  if (this.options.autoscale === 'cover' && ratio <= parent.ratio) {
-    size.width = parent.width;
-    size.height = size.width / ratio;
-  } else {
-    size.height = parent.height;
-    size.width = size.height * ratio;
+  if (this.options.autoscale === 'cover' && this.ratio <= parentRatio) {
+    return {
+      width: parentWidth,
+      height: parentWidth / this.ratio
+    };
   }
   return {
-    width: size.width + 'px',
-    height: size.height + 'px',
-    marginLeft: -0.5 * size.width + 'px',
-    marginTop: -0.5 * size.height + 'px'
+    height: parentHeight,
+    width: parentHeight * this.ratio
   };
-};
-
-/**
- * Get Element Ratio
- * @returns {number|*|ratio}
- */
-Autoscale.prototype.getRatio = function() {
-  return this.options.ratio || this.el.width() / this.el.height();
 };
 
 /**
  * Refresh Element
  */
 Autoscale.prototype.refresh = function() {
-  var parent = {
-    width: this.parent.width(),
-    height: this.parent.height()
-  };
-
-  this.el.css(this.getCSS(parent, this.getRatio()));
+  var size = this.getSize();
+  this.el.css({
+    width: size.width + 'px',
+    height: size.height + 'px',
+    marginLeft: -0.5 * size.width + 'px',
+    marginTop: -0.5 * size.height + 'px'
+  });
   this.isAnimating = false;
 };
 
@@ -109,7 +96,7 @@ module.exports = Autoscale;
  */
 $.fn.autoscale = function(options) {
   return this.each(function() {
-  new Autoscale(this, options);
+    new Autoscale(this, options);
   });
 };
 
