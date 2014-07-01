@@ -104,5 +104,7 @@ $.fn.autoscale = function(options) {
  * Initialize Data Attribute
  */
 $(window).on('load.aranja', function() {
-  $('[data-autoscale]').autoscale($(this).data());
+  $('[data-autoscale]').each(function () {
+    $(this).autoscale($(this).data());
+  })
 });
