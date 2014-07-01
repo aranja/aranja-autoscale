@@ -28,11 +28,10 @@ Autoscale.DEFAULTS = {
  * in correct scale and position.
  */
 Autoscale.prototype.init = function() {
+  this.ratio = this.options.ratio || this.el.width() / this.el.height();
   this.refresh();
   this.refresh = this.refresh.bind(this);
   this.isAnimating = false;
-  this.ratio = this.options.ratio || this.el.width() / this.el.height();
-
   $(window).on('resize.aranja', this.handleResize.bind(this));
 };
 
@@ -47,8 +46,8 @@ Autoscale.prototype.init = function() {
  */
 Autoscale.prototype.getSize = function() {
   var parentHeight = this.parent.height(),
-    parentWidth = this.parent.width(),
-    parentRatio = parentWidth / parentHeight;
+      parentWidth = this.parent.width(),
+      parentRatio = parentWidth / parentHeight;
 
   if (this.options.autoscale === 'cover' && this.ratio <= parentRatio) {
     return {
@@ -56,6 +55,7 @@ Autoscale.prototype.getSize = function() {
       height: parentWidth / this.ratio
     };
   }
+
   return {
     height: parentHeight,
     width: parentHeight * this.ratio
@@ -67,12 +67,14 @@ Autoscale.prototype.getSize = function() {
  */
 Autoscale.prototype.refresh = function() {
   var size = this.getSize();
+
   this.el.css({
     width: size.width + 'px',
     height: size.height + 'px',
     marginLeft: -0.5 * size.width + 'px',
     marginTop: -0.5 * size.height + 'px'
   });
+
   this.isAnimating = false;
 };
 
