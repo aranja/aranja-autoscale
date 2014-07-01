@@ -105,8 +105,10 @@ $.fn.autoscale = function(options) {
 /**
  * Initialize Data Attribute
  */
-$(window).on('load.aranja', function() {
-  $('[data-autoscale]').each(function () {
-    $(this).autoscale($(this).data());
-  })
+$('[data-autoscale]').one('load.aranja', function() {
+  $(this).autoscale($(this).data());
+}).each(function() {
+  if (this.complete) {
+    $(this).load();
+  }
 });

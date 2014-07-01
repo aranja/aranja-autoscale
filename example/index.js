@@ -106,12 +106,13 @@ $.fn.autoscale = function(options) {
 /**
  * Initialize Data Attribute
  */
-$(window).on('load.aranja', function() {
-  $('[data-autoscale]').each(function () {
-    $(this).autoscale($(this).data());
-  })
+$('[data-autoscale]').one('load.aranja', function() {
+  $(this).autoscale($(this).data());
+}).each(function() {
+  if (this.complete) {
+    $(this).load();
+  }
 });
-
 },{"jquery":2}],2:[function(_dereq_,module,exports){
 /*!
  * jQuery JavaScript Library v1.11.1
