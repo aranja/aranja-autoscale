@@ -1,12 +1,12 @@
 {
   "name": "aranja-autoscale",
   "main": "index.js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "homepage": "https://github.com/aranja/aranja-autoscale",
   "authors": [
     "Aranja"
   ],
-  "description": "Autoscale elements to fill a container.",
+  "description": "Autoscale element to fill a container.",
   "license": "MIT",
   "ignore": [
     "**/.*",

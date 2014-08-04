@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Autoscale component - Aranja</title>
+  <style>
+  html, body{
+    background: #bada55;
+    margin: 0;
+  }
+  .Container {
+    height: 300px;
+  }
+  .Description {
+    font-family: sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: #fff;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  </style>
+  <link rel="stylesheet" href="aranja-autoscale.css">
+</head>
+<body>
+  <div class="with-Autoscale Container">
+    <img data-autoscale="cover" src="//lorempixel.com/1600/1200/nature/">
+    <div class="Description">Cover</div>
+  </div>
+  <div class="with-Autoscale Container">
+    <img data-autoscale src="//lorempixel.com/1600/1200/cats/">
+    <div class="Description">Contain</div>
+  </div>
+  <div class="with-Autoscale Container">
+    <img data-autoscale data-width="1600" data-height="1200" src="//lorempixel.com/1600/1200/nightlife/">
+    <div class="Description">Contain with forced size</div>
+  </div>
+  <div class="with-Autoscale Container">
+    <img data-autoscale="cover" data-ratio="2" src="//lorempixel.com/1600/800/people/">
+    <div class="Description">Cover with predefined aspect ratio</div>
+  </div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="aranja-autoscale.js"></script>
+</body>
+</html>
