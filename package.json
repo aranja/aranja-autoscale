@@ -1,16 +1,16 @@
 {
-  "name": "aranja-autoscale",
-  "version": "0.0.7",
+  "name": "tux-autoscale",
+  "version": "0.0.1",
   "description": "Autoscale element to fill a container.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "http://github.com/aranja/aranja-autoscale.git"
+    "url": "http://github.com/aranja/tux-autoscale.git"
   },
   "bugs": {
-    "url": "https://github.com/aranja/aranja-autoscale/issues"
+    "url": "https://github.com/aranja/tux-autoscale/issues"
   },
-  "homepage": "https://github.com/aranja/aranja-autoscale",
+  "homepage": "https://github.com/aranja/tux-autoscale",
   "keywords": [],
   "license": "MIT",
   "dependencies": {

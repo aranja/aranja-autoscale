@@ -36,16 +36,27 @@ Autoscale.prototype.init = function() {
   this.refresh();
   this.refresh = this.refresh.bind(this);
   this.isAnimating = false;
-  $(window).on('resize.aranja', this.handleResize.bind(this));
-  // Refresh when images are loaded
-  this.el.on('load.aranja', this.refresh);
-  
+  $(window).on('resize.tux', this.handleResize.bind(this));
+  this.el.on('load.tux', this.handleLoaded_.bind(this));
+
   // Force size if set
   if (this.options.width && this.options.height) {
     this.el.width(this.options.width);
     this.el.height(this.options.height);
     this.refresh();
   }
+};
+
+/**
+ * Find the correct ratio after load.
+ */
+Autoscale.prototype.handleLoaded_ = function(event) {
+  this.el.css({
+    width: 'auto',
+    height: 'auto'
+  });
+  this.ratio = null;
+  this.refresh();
 };
 
 /**
@@ -61,7 +72,7 @@ Autoscale.prototype.getSize = function() {
   var parentHeight = this.parent.height(),
       parentWidth = this.parent.width(),
       parentRatio = parentWidth / parentHeight;
-  
+
   if (!this.ratio) {
     this.ratio = this.el.width() / this.el.height();
   }
@@ -126,8 +137,8 @@ $.fn.autoscale = function(options) {
 /**
  * Initialize Data Attribute
  */
-$(document).on('ready.aranja', function() {
-  $('[data-autoscale]').each(function() {
+$(document).on('ready.tux', function() {
+  $('[tux-autoscale]').each(function() {
     $(this).autoscale($(this).data());
   });
 });

@@ -10,7 +10,7 @@ var gulp = require('gulp'),
 gulp.task('styles', function() {
   gulp.src('lib/autoscale.css')
       .pipe(prefix('> 5%'))
-      .pipe(rename('aranja-autoscale.css'))
+      .pipe(rename('tux-autoscale.css'))
       .pipe(gulp.dest('demo'))
       .pipe(connect.reload());
 });
@@ -18,7 +18,7 @@ gulp.task('styles', function() {
 gulp.task('scripts', function() {
   gulp.src('lib/autoscale.js')
       .pipe(browserify())
-      .pipe(rename('aranja-autoscale.js'))
+      .pipe(rename('tux-autoscale.js'))
       .pipe(gulp.dest('demo'))
       .pipe(connect.reload());
 });

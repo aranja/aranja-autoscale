@@ -1,4 +1,4 @@
-# Autoscale component
+# TUX Autoscale component
 
 Autoscale element to fill a container.
 
