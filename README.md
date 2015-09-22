@@ -32,3 +32,6 @@ Options can be passed via JavaScript.
 | width | number | undefined | Set a fixed width. |
 
 You have to supply both width and height if you want to set an initial size. This makes images render in correct size while they are loading.
+
+## License
+MIT © [Aranja](http://aranja.com/)
