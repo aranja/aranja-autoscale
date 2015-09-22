@@ -1,6 +1,6 @@
 {
   "name": "tux-autoscale",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Autoscale element to fill a container.",
   "main": "index.js",
   "repository": {
