@@ -14,7 +14,7 @@
   "keywords": [],
   "license": "MIT",
   "dependencies": {
-    "jquery": "~1.11.1"
+    "jquery": "~3.5.0"
   },
   "devDependencies": {
     "karma": "~0.12.16",
